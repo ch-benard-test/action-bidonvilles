@@ -27,9 +27,6 @@ jobs:
       - name: Build the project (resulting in a dist directory)
         run: yarn build
       
-      - name: Display structure of dist directory
-        run: ls -R dist/
-      
       - uses: actions/upload-artifact@v2
         with:
           name: dist-artifact
@@ -50,6 +47,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist-artifact
+          path: ./dist/
 
       - name: Display structure of downloaded files
         run: ls -R
