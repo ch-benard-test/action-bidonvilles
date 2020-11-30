@@ -30,7 +30,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: dist-artifact
-          path: dist/
+          path: ./dist/
           retention-days: 5
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
           
