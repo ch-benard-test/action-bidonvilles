@@ -1,4 +1,4 @@
-name: build_and_deploy_to_dockerhub
+name: cd
 
 # Controls when the action will run. 
 on:
@@ -13,19 +13,19 @@ jobs:
       matrix:
         node-version: [ 14.x ]
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version:  ${{ matrix.node-version }}
         
-      - name: Installing project dependencies
-      - run: yarn install
+      - name: Install project dependencies
+        run: yarn install
         
-      - name: Building the project
-      - run: yarn build
+      - name: Build the project (resulting in a dist directory)
+        run: yarn build
 
   # This job builds a docker image and push it to the Docker registry
   push_to_registry:
